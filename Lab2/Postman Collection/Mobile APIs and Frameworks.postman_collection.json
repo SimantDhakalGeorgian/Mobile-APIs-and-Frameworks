@@ -34,6 +34,14 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GraphQL-DataFromURLRequest",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
