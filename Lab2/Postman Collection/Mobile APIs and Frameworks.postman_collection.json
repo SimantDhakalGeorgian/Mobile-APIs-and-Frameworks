@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "cc1b442a-2b01-46b0-88c7-9d32022357c4",
+		"name": "Mobile APIs and Frameworks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4050992",
+		"_collection_link": "https://red-sunset-377953.postman.co/workspace/Georgian-College~fa0d88f6-228c-4d28-a6af-f814e7847c50/collection/4050992-cc1b442a-2b01-46b0-88c7-9d32022357c4?action=share&source=collection_link&creator=4050992"
+	},
+	"item": [
+		{
+			"name": "GraphQL",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Rest-Vehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/films",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
