@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "9f9c96ce-f5c8-4d0a-823c-0308cd896872",
+		"name": "Lab 3 APIS and Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4050992",
+		"_collection_link": "https://red-sunset-377953.postman.co/workspace/Georgian-College~fa0d88f6-228c-4d28-a6af-f814e7847c50/collection/4050992-9f9c96ce-f5c8-4d0a-823c-0308cd896872?action=share&source=collection_link&creator=4050992"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movieID\": \"11\",\n    \"title\": \"Avatar: The Way of Water\",\n    \"studio\": \"20th Century Studios\",\n    \"genres\": [\n        \"Action\",\n        \"Adventure\",\n        \"Sci-Fi\"\n    ],\n    \"directors\": [\n        \"James Cameron\"\n    ],\n    \"writers\": [\n        \"James Cameron\",\n        \"Rick Jaffa\",\n        \"Amanda Silver\"\n    ],\n    \"actors\": [\n        \"Sam Worthington\",\n        \"Zoe Saldana\",\n        \"Sigourney Weaver\",\n        \"Stephen Lang\",\n        \"Kate Winslet\"\n    ],\n    \"year\": 2022,\n    \"length\": 192,\n    \"shortDescription\": \"Jake Sully lives with his newfound family formed on the planet Pandora. When a familiar threat returns to finish what was started, Jake must work with Neytiri and the army of the Na'vi to protect their home.\",\n    \"mpaRating\": \"PG-13\",\n    \"criticsRating\": 7.6,\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/movie/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"movie",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovieByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/movie/6709a3375ac6f8e01aa3d6b7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"movie",
+						"6709a3375ac6f8e01aa3d6b7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": \"6709a3375ac6f8e01aa3d6b7\",\n    \"movieID\": \"11\",\n    \"title\": \"Avatar: The Way of Water Volume 2\",\n    \"studio\": \"20th Century Studios Universe\",\n    \"genres\": [\n        \"Action\",\n        \"Adventure\",\n        \"Sci-Fi\",\n        \"Animated\"\n    ],\n    \"directors\": [\n        \"James Cameron\",\n        \"Jai Shree Ram\"\n    ],\n    \"writers\": [\n        \"James Cameron\",\n        \"Rick Jaffa\",\n        \"Amanda Silver\"\n    ],\n    \"actors\": [\n        \"Sam Worthington\",\n        \"Zoe Saldana\",\n        \"Sigourney Weaver\",\n        \"Stephen Lang\",\n        \"Kate Winslet\"\n    ],\n    \"year\": 2022,\n    \"length\": 192,\n    \"shortDescription\": \"Jake Sully lives with his newfound family formed on the planet Pandora. When a familiar threat returns to finish what was started, Jake must work with Neytiri and the army of the Na'vi to protect their home.\",\n    \"mpaRating\": \"PG-13\",\n    \"criticsRating\": 7.6,\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/movie/update/6709a3375ac6f8e01aa3d6b7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"movie",
+						"update",
+						"6709a3375ac6f8e01aa3d6b7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/movie/delete/6709a2745ac6f8e01aa3d6b2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"movie",
+						"delete",
+						"6709a2745ac6f8e01aa3d6b2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
