@@ -1,8 +1,11 @@
 const Movie = require('../models/Movies');
 const fs =require('fs');
 
-//Function to get all the files
+// Function to get all the movies with search and filter functionality which is
+// mentioned in our Lab4 assignment
 exports.getMovies = async(req,res)=>{
+    // extracts title,genre and year from the query parammeter
+    const { title, genre, year } = req.query;
     
 };
 
