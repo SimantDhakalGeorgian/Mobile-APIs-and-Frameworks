@@ -4,8 +4,14 @@ const fs =require('fs');
 // Function to get all the movies with search and filter functionality which is
 // mentioned in our Lab4 assignment
 exports.getMovies = async(req,res)=>{
+
+    console.log("Inside get movies");
+
+
     // extracts title,genre and year from the query parammeter
     const { title, genre, year } = req.query;
+
+    console.log(title);
 
     // initialize an empty object to store search and filter 
     let searchAndFilter = {};
