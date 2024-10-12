@@ -6,7 +6,27 @@ const fs =require('fs');
 exports.getMovies = async(req,res)=>{
     // extracts title,genre and year from the query parammeter
     const { title, genre, year } = req.query;
-    
+
+    // initialize an empty object to store search and filter 
+    let searchAndFilter = {};
+
+    // check the condition for title, genre and year
+    // search by title
+    if (title) {
+
+    }
+
+    // for filter
+
+    // search by genre 
+    if (genre) {
+
+    }
+
+    // and search by year
+    if (year) {
+
+    }
 };
 
 //Function to create a new movie
