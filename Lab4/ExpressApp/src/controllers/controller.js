@@ -21,7 +21,7 @@ exports.getMovies = async(req,res)=>{
     if (title) {
         // filter was not working because of case sensitive words
         // update code with case-insensitive title search
-        filter.title = new RegExp(title, 'i');
+        searchAndFilter.title = new RegExp(title, 'i');
     }
 
     // for filter
