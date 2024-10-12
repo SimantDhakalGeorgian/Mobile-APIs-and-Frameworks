@@ -13,19 +13,19 @@ exports.getMovies = async(req,res)=>{
     // check the condition for title, genre and year
     // search by title
     if (title) {
-
+        searchAndFilter.title = title;
     }
 
     // for filter
 
     // search by genre 
     if (genre) {
-
+        searchAndFilter.genre = genre;
     }
 
     // and search by year
     if (year) {
-
+        searchAndFilter.year = year;
     }
 };
 
