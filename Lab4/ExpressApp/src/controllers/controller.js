@@ -5,43 +5,38 @@ const fs =require('fs');
 // mentioned in our Lab4 assignment
 exports.getMovies = async(req,res)=>{
 
-    try{
-        const movies = await Movie.find();
-         res.status(200).json(movies);
+    console.log("Inside get movies");
+
+
+    // extracts title,genre and year from the query parammeter
+    const { title, genre, year } = req.query;
+
+    console.log(title);
+
+    // initialize an empty object to store search and filter 
+    let searchAndFilter = {};
+
+    // check the condition for title, genre and year
+    // search by title
+    if (title) {
+        searchAndFilter.title = title;
     }
-    catch(e){
-            console.error(e);
-            res.status(500).send('Error retrieving Movies');
+
+    // for filter
+
+    // search by genre 
+    if (genre) {
+        searchAndFilter.genre = genre;
     }
 
-    // console.log("Inside get movies");
+    // and search by year
+    if (year) {
+        searchAndFilter.year = year;
+    }
 
-
-    // // extracts title,genre and year from the query parammeter
-    // const { title, genre, year } = req.query;
-
-    // console.log(title);
-
-    // // initialize an empty object to store search and filter 
-    // let searchAndFilter = {};
-
-    // // check the condition for title, genre and year
-    // // search by title
-    // if (title) {
-    //     searchAndFilter.title = title;
-    // }
-
-    // // for filter
-
-    // // search by genre 
-    // if (genre) {
-    //     searchAndFilter.genre = genre;
-    // }
-
-    // // and search by year
-    // if (year) {
-    //     searchAndFilter.year = year;
-    // }
+    // fetch movies based on the conditions
+    const movies = await Movie.find(searchAndFilter);
+    res.status(200).json(movies);
 };
 
 //Function to create a new movie
