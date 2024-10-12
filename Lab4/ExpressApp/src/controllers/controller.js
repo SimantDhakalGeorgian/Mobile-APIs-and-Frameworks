@@ -32,13 +32,14 @@ exports.getMovies = async(req,res)=>{
         if (genre) {
             console.log(genre);
             // searchAndFilter.genre = genre;
-            // it in the array
+            // search by genre, checking within the genres array
             searchAndFilter.genres = { $in: [genre] }; // Corrected genre search
         }
 
         // and search by year
         if (year) {
-            searchAndFilter.year = year;
+            // convert year to a number for filter
+            searchAndFilter.year = Number(req.query.year);
         }
 
 
