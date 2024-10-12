@@ -5,40 +5,52 @@ const fs =require('fs');
 // mentioned in our Lab4 assignment
 exports.getMovies = async(req,res)=>{
 
-    console.log("Inside get movies");
+    try {
+        console.log("Inside get movies");
+
+        // extracts title,genre and year from the query parammeter
+        const { title, genre, year } = req.query;
+
+        console.log(title);
+
+        // initialize an empty object to store search and filter 
+        let searchAndFilter = {};
+
+        // check the condition for title, genre and year
+        // search by title
+        if (title) {
+            // filter was not working because of case sensitive words
+            // update code with case-insensitive title search
+            searchAndFilter.title = new RegExp(title, 'i');
+        }
+
+        // for filter
+
+        // search by genre 
+        if (genre) {
+            searchAndFilter.genre = genre;
+        }
+
+        // and search by year
+        if (year) {
+            searchAndFilter.year = year;
+        }
 
 
-    // extracts title,genre and year from the query parammeter
-    const { title, genre, year } = req.query;
+        // fetch movies based on the conditions
+        const movies = await Movie.find(searchAndFilter);
 
-    console.log(title);
+        // now if movie name does not found, show a message with
+        // no movie found with this name
+        if (movies.length === 0) {
+            return res.status(404).send(`No movie found with this name ${title}`);
+        }
 
-    // initialize an empty object to store search and filter 
-    let searchAndFilter = {};
-
-    // check the condition for title, genre and year
-    // search by title
-    if (title) {
-        // filter was not working because of case sensitive words
-        // update code with case-insensitive title search
-        searchAndFilter.title = new RegExp(title, 'i');
-    }
-
-    // for filter
-
-    // search by genre 
-    if (genre) {
-        searchAndFilter.genre = genre;
-    }
-
-    // and search by year
-    if (year) {
-        searchAndFilter.year = year;
-    }
-
-    // fetch movies based on the conditions
-    const movies = await Movie.find(searchAndFilter);
-    res.status(200).json(movies);
+        res.status(200).json(movies);
+    } catch (e) {
+        console.error(e);
+        res.status(500).send('Error retrieving movies');
+    } 
 };
 
 //Function to create a new movie
