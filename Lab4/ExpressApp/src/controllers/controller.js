@@ -12,6 +12,8 @@ exports.getMovies = async(req,res)=>{
         const { title, genre, year } = req.query;
 
         console.log(title);
+        console.log(genre);
+        console.log(year);
 
         // initialize an empty object to store search and filter 
         let searchAndFilter = {};
@@ -28,7 +30,10 @@ exports.getMovies = async(req,res)=>{
 
         // search by genre 
         if (genre) {
-            searchAndFilter.genre = genre;
+            console.log(genre);
+            // searchAndFilter.genre = genre;
+            // it in the array
+            searchAndFilter.genres = { $in: [genre] }; // Corrected genre search
         }
 
         // and search by year
@@ -41,9 +46,9 @@ exports.getMovies = async(req,res)=>{
         const movies = await Movie.find(searchAndFilter);
 
         // now if movie name does not found, show a message with
-        // no movie found with this name
+        // no movie found
         if (movies.length === 0) {
-            return res.status(404).send(`No movie found with this name ${title}`);
+            return res.status(404).send(`No movie found`);
         }
 
         res.status(200).json(movies);
