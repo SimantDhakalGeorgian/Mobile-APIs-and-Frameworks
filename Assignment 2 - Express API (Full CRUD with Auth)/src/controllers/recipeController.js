@@ -25,7 +25,7 @@ exports.getRecipeById = async(req,res) =>{
         if(!recipe){
             return res.status(404).send('Recipe is not found');
         }
-        res.status(201).json(Recipe);
+        res.status(201).json(recipe);
     
     }
     catch(e){
