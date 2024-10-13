@@ -4,20 +4,29 @@ const logger = (req,res,next)=>{
     next();
 }
 
-//Validate Movie data before creating or updating
-const validateMovie = (req,res,next)=>{
+// Validate Recipe data before creating or updating
+const validateRecipe = (req, res, next) => {
+    const { name, ingredients, instructions, servings, prepTime } = req.body;
 
-    const{ title,studio,year,genres,directors} = req.body;
-    if(!title || !studio || !year || !genres || !directors){
-        return res.status(400).send('Missing required fields:title,studio,genres, year or directors');
+    if (!name || !ingredients || !instructions || !servings || !prepTime) {
+        return res.status(400).send('Missing required fields: name, ingredients, instructions, servings, or prepTime');
     }
-    if(typeof year !== 'number' || year < 1888 || year > new Date().getFullYear()){
-        return res.status(400).send('Invalid Year');
+
+    if (!Array.isArray(ingredients) || ingredients.length === 0) {
+        return res.status(400).send('Invalid or missing ingredients. It should be a non-empty array.');
+    }
+
+    if (typeof servings !== 'number' || servings <= 0) {
+        return res.status(400).send('Invalid servings. It should be a positive number.');
+    }
+
+    if (typeof prepTime !== 'number' || prepTime <= 0) {
+        return res.status(400).send('Invalid prep time. It should be a positive number representing minutes.');
     }
 
     next();
-
 };
+
 
 //Middleware to handle 404
 const handleNotFound=(req,res)=>{
@@ -26,6 +35,6 @@ const handleNotFound=(req,res)=>{
 
 module.exports ={
     logger,
-    validateMovie,
+    validateRecipe,
     handleNotFound
 };

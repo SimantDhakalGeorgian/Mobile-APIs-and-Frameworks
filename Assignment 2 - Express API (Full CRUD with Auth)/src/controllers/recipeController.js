@@ -17,3 +17,16 @@ exports.getAllRecipe = async(req,res)=>{
         res.status(500).json({ message: 'Server error: Could not fetch recipes' });
     }
 };
+
+//Function to create a new recipe
+exports.createRecipe = async(req,res)=>{
+    try{
+        const newRecipe = new Recipe(req.body);
+        await newRecipe.save();
+         res.status(201).json(newRecipe);
+    }
+    catch(e){
+            console.error(e);
+            res.status(500).send('Error creating Recipe');
+    }
+};
