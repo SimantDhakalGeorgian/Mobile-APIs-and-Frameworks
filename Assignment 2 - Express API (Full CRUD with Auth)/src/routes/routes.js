@@ -13,4 +13,7 @@ router.get('/:id',recipeController.getRecipeById);
 //Validate recipe before creating
 router.post('/create',validateRecipe,recipeController.createRecipe);
 
+//Route to update a recipe by id
+router.put('/update/:id', validateRecipe,recipeController.updateRecipe);
+
 module.exports = router;
