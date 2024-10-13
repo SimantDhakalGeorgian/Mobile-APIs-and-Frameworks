@@ -16,4 +16,7 @@ router.post('/create',validateRecipe,recipeController.createRecipe);
 //Route to update a recipe by id
 router.put('/update/:id', validateRecipe,recipeController.updateRecipe);
 
-module.exports = router;
+//Route top delete a recipe by id
+router.delete('/delete/:id',recipeController.deleteRecipe);
+
+module.exports = router; 
