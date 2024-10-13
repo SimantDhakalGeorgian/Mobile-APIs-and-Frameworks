@@ -18,6 +18,22 @@ exports.getAllRecipe = async(req,res)=>{
     }
 };
 
+//Get a single recipe by Id
+exports.getRecipeById = async(req,res) =>{
+    try{
+        const recipe = await Recipe.findById(req.params.id);
+        if(!recipe){
+            return res.status(404).send('Recipe is not found');
+        }
+        res.status(201).json(Recipe);
+    
+    }
+    catch(e){
+        console.error(e);
+        res.status(500).send('Error retrieving the Recipes');
+    }
+    };
+
 //Function to create a new recipe
 exports.createRecipe = async(req,res)=>{
     try{
