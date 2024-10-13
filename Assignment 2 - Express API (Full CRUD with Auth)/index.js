@@ -11,6 +11,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const crypto = require('crypto');
 require('./src/config/passportConfig');
+const bcrypt = require('bcryptjs');
 const authRoutes = require('./src/routes/authRoutes');
 
 // Initialize MongoDB connection
