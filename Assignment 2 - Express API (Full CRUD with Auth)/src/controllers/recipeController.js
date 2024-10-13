@@ -61,3 +61,18 @@ exports.updateRecipe = async(req,res) =>{
         res.status(500).send('Error updating the recipe');
     }
 };
+
+//Delete a single recipe by Id
+exports.deleteRecipe = async(req,res) =>{
+    try{
+        const deletedRecipe = await Movie.findByIdAndDelete(req.params.id);
+        if(!deletedRecipe){
+            return res.status(404).send('Recipe not found');
+    }
+    res.status(201).json(deletedRecipe);    
+    }
+    catch(e){
+        console.error(e);
+        res.status(500).send('Error deleting the Recipe');
+    }
+};
