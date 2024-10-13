@@ -64,14 +64,15 @@ exports.updateRecipe = async(req,res) =>{
 
 //Delete a single recipe by Id
 exports.deleteRecipe = async(req,res) =>{
-    try{
+
+    console.log("Deleting recipe");
+    try {
         const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id);
         if(!deletedRecipe){
             return res.status(404).send('Recipe not found');
-    }
-    res.status(201).json(deletedRecipe);    
-    }
-    catch(e){
+        }
+        res.status(201).json(deletedRecipe);  
+    } catch (e) {
         console.error(e);
         res.status(500).send('Error deleting the Recipe');
     }
