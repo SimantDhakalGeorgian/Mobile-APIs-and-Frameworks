@@ -65,7 +65,7 @@ exports.updateRecipe = async(req,res) =>{
 //Delete a single recipe by Id
 exports.deleteRecipe = async(req,res) =>{
     try{
-        const deletedRecipe = await Movie.findByIdAndDelete(req.params.id);
+        const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id);
         if(!deletedRecipe){
             return res.status(404).send('Recipe not found');
     }
