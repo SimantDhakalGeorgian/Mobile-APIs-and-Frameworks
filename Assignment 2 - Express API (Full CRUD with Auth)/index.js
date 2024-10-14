@@ -1,4 +1,10 @@
-// index.js
+/**
+ * File name: index.js
+ * Student Name: Simant Dhakal
+ * StudentID: 200563270
+ * Date: October 13, 2024
+ */
+
 const express = require('express');
 const mongoose = require('mongoose');
 const session=require('express-session');

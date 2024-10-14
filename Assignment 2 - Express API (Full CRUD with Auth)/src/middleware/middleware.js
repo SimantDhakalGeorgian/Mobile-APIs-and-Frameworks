@@ -1,3 +1,10 @@
+/**
+ * File name: middleware.js
+ * Student Name: Simant Dhakal
+ * StudentID: 200563270
+ * Date: October 13, 2024
+ */
+
 //Middleware to log incoming requests
 const logger = (req,res,next)=>{
     console.log(`${req.method}${req.originalUrl} - ${new Date().toISOString()}`);
