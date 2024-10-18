@@ -20,6 +20,19 @@ const importTeams = async (req, res) => {
     }
 };
 
+// retrieve all sports teams from the database
+const getTeams = async (req, res) => {
+    try {
+        // find teams and get data
+        const teams = await Team.find();
+        res.status(200).json(teams);
+    } catch (error) {
+        console.error('Error retrieving teams:', error);
+        res.status(500).send('Error retrieving teams');
+    }
+};
+
 module.exports = {
-    importTeams
+    importTeams,
+    getTeams
 };
