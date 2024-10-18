@@ -32,7 +32,38 @@ const getTeams = async (req, res) => {
     }
 };
 
+// retieve a specific team by it id
+const getTeamById = async (req, res) => {
+    try {
+        const team = await Team.findById(req.params.id);
+        if (!team) {
+            return res.status(404).send('Team not found');
+        }
+        res.status(200).json(team);
+    } catch (error) {
+        console.error('Error retrieving the team:', error);
+        res.status(500).send('Error retrieving the team');
+    }
+};
+
+// retrive teams based on their city because we don;t have a location
+const getTeamsByCity = async (req, res) => {
+    try {
+        const teams = await Team.find({ city: req.params.city });
+        if (teams.length === 0) {
+            return res.status(404).send('No teams found in this city');
+        }
+        res.status(200).json(teams);
+    } catch (error) {
+        console.error('Error retrieving teams by city:', error);
+        res.status(500).send('Error retrieving teams by city');
+    }
+};
+
+
 module.exports = {
     importTeams,
-    getTeams
+    getTeams,
+    getTeamById,
+    getTeamsByCity
 };
