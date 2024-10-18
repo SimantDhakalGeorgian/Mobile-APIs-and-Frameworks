@@ -11,7 +11,7 @@ app.use(express.json());
 
 // MongoDB Connection
 const connectionWithDB = async () => {
-    
+
     try {
       await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
@@ -26,4 +26,8 @@ const connectionWithDB = async () => {
   
 // Call the connectionWithDB function
 connectionWithDB();
-  
+
+// Server listening
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
