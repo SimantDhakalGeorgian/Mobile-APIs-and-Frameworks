@@ -1,16 +1,16 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
-// here i have seperated the db connection fucntion in seperate config folder and db file
-// as taught in the class
-const connectDB = require('./src/config/db');
-// imported the teamRoutes 
+const connectDB = require('./src/config/db'); // Adjust path if necessary
 const teamRoutes = require('./src/routes/teamRoutes');
 
-// here I have environment variables
-dotenv.config({ path: './src/config.env' });
+// Load environment variables
+dotenv.config({ path: './config.env' });
 
-// function to call to Connect to MongoDB
+// Log the Mongo URI for debugging
+console.log('Mongo URI:', process.env.MONGO_URI); // Check if this is defined
+
+// Connect to MongoDB
 connectDB();
 
 // Initialize the express app
