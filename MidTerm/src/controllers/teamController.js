@@ -10,8 +10,10 @@ const importTeams = async (req, res) => {
         // add a count 
         const count = await Team.countDocuments();
 
-        if (counts === 0) {
+        // check if count === 0 or not
+        if (count === 0) {
             await Team.create(teamsData);
+            console.log('Teams successfully imported');
             res.status(200).send('Teams successfully imported');
         } else {
             res.status(200).send('Teams already exist in the database');
