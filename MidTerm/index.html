@@ -17,8 +17,21 @@
   <pre id="results"></pre>
    
   <script>
-    // Students need to implement the JavaScript code here
-    // This includes fetching data from the REST API and handling the responses.
+    // create a function to fetch all teams from api
+    const getAllteams = async () => {
+      try {
+        const response = await fetch('/team');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('results').textContent = 'Error: ' + error.message;
+      }
+    };
+
+
+    // Attach event listeners to buttons
+    document.getElementById('getAllTeams').addEventListener('click', getAllteams);
   </script>
 </body>
 </html>
