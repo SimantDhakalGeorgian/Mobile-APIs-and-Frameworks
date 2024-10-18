@@ -1,35 +1,41 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' }); // Load env variables
+const path = require('path');
+// here i have seperated the db connection fucntion in seperate config folder and db file
+// as taught in the class
+const connectDB = require('./config/db');
+// imported the teamRoutes 
+const teamRoutes = require('./routes/teamRoutes');
 
+// here I have environment variables
+dotenv.config({ path: './config.env' });
 
+// function to call to Connect to MongoDB
+connectDB();
 
+// Initialize the express app
 const app = express();
-const port = 3000;
 
-// Middleware to parse JSON
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// MongoDB Connection
-const connectionWithDB = async () => {
+// Routes for teams
+app.use('/teams', teamRoutes);
 
-    try {
-      await mongoose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
-      console.log('MongoDB Connected');
-    } catch (err) {
-      console.error('MongoDB connection error:', err.message);
-      process.exit(1); // Exit process with failure
-    }
-};
-  
-// Call the connectionWithDB function
-connectionWithDB();
+// Serve the HTML file located at the root of the project
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-// Server listening
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
-  });
+});
