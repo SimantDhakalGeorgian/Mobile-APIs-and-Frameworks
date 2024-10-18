@@ -1,4 +1,4 @@
-const Team = require('../models/Team');
+const Team = require('../models/teams');
 const fs = require('fs');
 const path = require('path');
 

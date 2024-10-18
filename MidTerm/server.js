@@ -3,12 +3,12 @@ const dotenv = require('dotenv');
 const path = require('path');
 // here i have seperated the db connection fucntion in seperate config folder and db file
 // as taught in the class
-const connectDB = require('./config/db');
+const connectDB = require('./src/config/db');
 // imported the teamRoutes 
-const teamRoutes = require('./routes/teamRoutes');
+const teamRoutes = require('./src/routes/teamRoutes');
 
 // here I have environment variables
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './src/config.env' });
 
 // function to call to Connect to MongoDB
 connectDB();
