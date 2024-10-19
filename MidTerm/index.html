@@ -31,20 +31,38 @@
 
     // fetch team by id
     const fetchTeamById = async () => {
-        // here open a prompt to let user 
-        // to add a id which is _id of a database schema name
-      const teamId = prompt("Enter your team id:");
-      if (teamId) {
-        try {
-          const response = await fetch(`/teams/${teamId}`);
-          if (!response.ok) throw new Error('Network response issue. Try again later');
-          const data = await response.json();
-          document.getElementById('results').textContent = JSON.stringify(data, null, 2);
-        } catch (error) {
-          document.getElementById('results').textContent = 'Error: ' + error.message;
+        // open prompt and ask to entrer team id
+        const teamId = prompt("Enter your team id:");
+
+        // Check if the input is empty
+        if (!teamId) {
+            document.getElementById('results').textContent = 'Error: Team ID cannot be empty.';
+            return; // Exit the function early
         }
-      }
+
+        try {
+            const response = await fetch(`/teams/${teamId}`);
+
+            // Handle different response statuses
+            if (response.status === 404) {
+                // If the team is not found
+                throw new Error('Team not found. Please check the ID and try again.');
+            } else if (!response.ok) {
+                // Catch other network issues
+                throw new Error('Network response issue. Try again later.');
+            }
+
+            const data = await response.json();
+            document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+        } catch (error) {
+            // Display the error message in the results section
+            document.getElementById('results').textContent = 'Error: ' + error.message;
+        } finally {
+            // You could reset or do any cleanup here if needed
+            console.log("Fetch operation completed.");
+        }
     };
+
 
     // user to fetch team list by city name 
     const fetchTeamsByCity = async () => {
