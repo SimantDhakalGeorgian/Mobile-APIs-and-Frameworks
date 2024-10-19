@@ -21,7 +21,7 @@
     const getAllteams = async () => {
       try {
         const response = await fetch('/teams');
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error('Network response issue. Try again later');
         const data = await response.json();
         document.getElementById('results').textContent = JSON.stringify(data, null, 2);
       } catch (error) {
@@ -29,9 +29,46 @@
       }
     };
 
+    // fetch team by id
+    const fetchTeamById = async () => {
+        // here open a prompt to let user 
+        // to add a id which is _id of a database schema name
+      const teamId = prompt("Enter your team id:");
+      if (teamId) {
+        try {
+          const response = await fetch(`/teams/${teamId}`);
+          if (!response.ok) throw new Error('Network response issue. Try again later');
+          const data = await response.json();
+          document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+        } catch (error) {
+          document.getElementById('results').textContent = 'Error: ' + error.message;
+        }
+      }
+    };
 
-    // Attach event listeners to buttons
+    // user to fetch team list by city name 
+    const fetchTeamsByCity = async () => {
+      const city = prompt("Please enter a city Name:");
+      if (city) {
+        try {
+          const response = await fetch(`/teams/city/${city}`);
+          if (!response.ok) throw new Error('Network response issue. Try again later');
+          const data = await response.json();
+          document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+        } catch (error) {
+          document.getElementById('results').textContent = 'Error: ' + error.message;
+        }
+      }
+    };
+    
+
+    // add event listener to buttons to get all teams from dartabase
     document.getElementById('getAllTeams').addEventListener('click', getAllteams);
+    // here when user click on fetvhteambyid a function get trigger which display to insert team id whihc is _id of a 
+    // mongo db database schema name
+    document.getElementById('getTeamById').addEventListener('click', fetchTeamById);
+    // get team lsit by city name 
+    document.getElementById('getTeamsByCity').addEventListener('click', fetchTeamsByCity);
   </script>
 </body>
 </html>
