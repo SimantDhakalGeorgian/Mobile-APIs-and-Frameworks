@@ -21,7 +21,7 @@
     const getAllteams = async () => {
       try {
         const response = await fetch('/teams');
-        if (!response.ok) throw new Error('Network response issue. Try again later');
+        if (!response.ok) throw new Error('Network response issue. Check team id and try again later.');
         const data = await response.json();
         document.getElementById('results').textContent = JSON.stringify(data, null, 2);
       } catch (error) {
