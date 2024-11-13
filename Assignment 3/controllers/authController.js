@@ -32,3 +32,21 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: 'Error registering user' });
   }
 };
+
+// Login User
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      // Find user by email
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+  
+      res.json({ message: 'Login successful', token });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
