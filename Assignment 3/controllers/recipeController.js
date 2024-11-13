@@ -6,14 +6,18 @@
  */
 
 // import recipe model
+const express = require('express');
+const router = express.Router();
 const Recipe = require('../models/recipe');
 
-// get all the recipe items from the mongo db and dipslay it here
-exports.getAllRecipe = async(req,res)=>{
-    try {
-        const recipes = await Recipe.find(); // Fetch all recipes from the MongoDB collection
-        res.json(recipes);
-      } catch (error) {
-        res.status(500).json({ message: 'Server error: Could not fetch recipes' });
-    }
-};
+// Get all recipes
+router.get('/', async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.json(recipes);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error: Could not fetch recipes' });
+  }
+});
+
+module.exports = router;

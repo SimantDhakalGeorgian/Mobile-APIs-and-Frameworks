@@ -6,15 +6,18 @@
  */
 
 const User = require('../models/user'); // import user model
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const SECRET_KEY = process.env.JWT_SECRET;
+// Make sure the token key is set in .env file
+const SECRET_KEY = process.env.TOKEN_KEY;
 
 // Register a new user
 exports.register = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  console.log("Registration request received"); 
+
+  const { fullname, email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -25,6 +28,7 @@ exports.register = async (req, res) => {
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.log(error); // Log any error for debugging
     res.status(500).json({ message: 'Error registering user' });
   }
 };

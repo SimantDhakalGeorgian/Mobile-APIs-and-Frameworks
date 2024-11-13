@@ -7,30 +7,42 @@
 
 const http = require('http');
 const express = require('express');
-const router = express.Router();
 require('dotenv').config();
- // Import the recipe routes
-const recipeRoutes = require('./controllers/recipeController')
+const mongoose = require('mongoose');
 
-// controllers 
+// controllers
 const authController = require('./controllers/authController');
 const recipeController = require('./controllers/recipeController');
-// middlware
+
+// middleware
 const { verifyToken } = require('./middleware/authMiddleware');
 
 const app = express();
-const { API_PORT } = process.env;
+app.use(express.json()); // Middleware to parse JSON
+
+const { API_PORT, MONGO_URI } = process.env;
 const port = process.env.PORT || API_PORT;
+
+// mongoDB connection setup
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log('MongoDB connection error:', err));
+
+// register routes
+const router = express.Router();
+router.post('/auth/register', authController.register);
+
+// Debugging the routing
+app.use('/', router); // Ensure router is correctly added to app
+console.log("Routes configured: /auth/register");
+
+// all recipe routes
+app.use('/recipe', recipeController);
 
 // create server using http
 const server = http.createServer(app);
 
-// use all routes
-app.use('/recipe', recipeRoutes); 
-// authentication routes
-router.post('/register', authController.register);
-
-// start listening port here
+// Start listening on the specified port
 server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
