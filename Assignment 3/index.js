@@ -6,11 +6,17 @@
  */
 
 const http = require('http');
+const express = require('express');
 require('dotenv').config();
 
-const { API_PORT} = process.env;
+const app = express();
+const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 
-server.listen(port,()=>{
-    console.log(`Server is running on port ${port}`);
+// create server using http
+const server = http.createServer(app);
+
+// start listening port here
+server.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });
