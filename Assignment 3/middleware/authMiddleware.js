@@ -8,7 +8,8 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const SECRET_KEY = process.env.JWT_SECRET;
+const SECRET_KEY = process.env.TOKEN_KEY;
+
 
 // here a middleware to protect routes
 exports.verifyToken = (req, res, next) => {

@@ -31,9 +31,10 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // register routes
 const router = express.Router();
 router.post('/auth/register', authController.register);
+app.post('/auth/login', authController.login);
 
 // Debugging the routing
-app.use('/', router); // Ensure router is correctly added to app
+app.use('/', router); 
 console.log("Routes configured: /auth/register");
 
 // all recipe routes
