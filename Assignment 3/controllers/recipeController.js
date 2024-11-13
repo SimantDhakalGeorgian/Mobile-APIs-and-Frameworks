@@ -10,6 +10,9 @@ const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/recipe');
 
+/// import verifcation token from middleware
+const { verifyToken } = require('../middleware/authMiddleware');
+
 // Get all recipes
 router.get('/', async (req, res) => {
   try {
