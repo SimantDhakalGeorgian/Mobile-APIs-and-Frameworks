@@ -88,6 +88,69 @@ router.post('/create', verifyToken, async (req, res) => {
   }
 });
 
+// update an existing recipe
+router.put('/:id', verifyToken, async (req, res) => {
+  try {
+    // Validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid recipe ID' });
+    }
+
+    const {
+      recipeName,
+      ingredients,
+      cookingTime,
+      difficulty,
+      cuisine,
+      description,
+      photoLink,
+      averageRating
+    } = req.body;
+
+    // Check if the required fields are present
+    if (
+      !recipeName ||
+      !ingredients ||
+      !cookingTime ||
+      !difficulty ||
+      !cuisine ||
+      !description ||
+      !photoLink ||
+      averageRating === undefined
+    ) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // find rcipe id and update
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      {
+        recipeName,
+        ingredients,
+        cookingTime,
+        difficulty,
+        cuisine,
+        description,
+        photoLink,
+        averageRating
+      },
+      { new: true } 
+    );
+
+    // show if recipe is not found and return 404
+    if (!updatedRecipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    // Successfully updated
+    res.status(200).json({ message: 'Recipe updated successfully', recipe: updatedRecipe });
+
+  } catch (error) {
+    console.error('Error updating recipe:', error);
+    res.status(500).json({ message: 'Server error: Could not update recipe' });
+  }
+});
+
 
 
 module.exports = router;
