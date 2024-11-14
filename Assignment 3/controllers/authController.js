@@ -36,7 +36,6 @@ exports.register = async (req, res) => {
 // Login User
 exports.login = async (req, res) => {
     const { email, password } = req.body;
-  
     try {
       // Find user by email
       const user = await User.findOne({ email });
@@ -51,7 +50,9 @@ exports.login = async (req, res) => {
       }
   
       // Generate JWT token
-      const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
+      // const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id }, process.env.TOKEN_KEY, { expiresIn: '1h' });
+
   
       res.json({ message: 'Login successful', token });
     } catch (error) {

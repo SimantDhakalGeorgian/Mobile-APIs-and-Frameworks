@@ -35,7 +35,6 @@ app.post('/auth/login', authController.login);
 
 // Debugging the routing
 app.use('/', router); 
-console.log("Routes configured: /auth/register");
 
 // all recipe routes
 app.use('/recipe', recipeController);

@@ -14,11 +14,12 @@ const Recipe = require('../models/recipe');
 const { verifyToken } = require('../middleware/authMiddleware');
 
 // Get all recipes
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const recipes = await Recipe.find();
     res.json(recipes);
   } catch (error) {
+    console.error('Error fetching recipes:', error);
     res.status(500).json({ message: 'Server error: Could not fetch recipes' });
   }
 });
