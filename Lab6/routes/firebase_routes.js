@@ -1,5 +1,5 @@
 const express = require("express");
-const { signUp, signIn, protectedRoute, verifyToken } = require("../controllers/firebase_controller");
+const { createUser, loginUser, protectedRoute, verifyToken } = require("../controllers/firebase_controller");
 
 const router = express.Router();
 

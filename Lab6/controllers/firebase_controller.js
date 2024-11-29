@@ -81,4 +81,4 @@ const protectedRoute = (req, res) => {
 };
   
 
-module.exports = { signUp, signIn, verifyToken, protectedRoute };
+module.exports = { createUser, loginUser, verifyToken, protectedRoute };
