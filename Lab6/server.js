@@ -3,6 +3,7 @@ const { signUp, signIn, verifyToken, protectedRoute } = require("./controllers/f
 
 const router = express.Router();
 
+// routes for signup and signin
 router.post("/signup", signUp);       // Create a new user
 router.post("/signin", signIn);       // Sign in an existing user
 

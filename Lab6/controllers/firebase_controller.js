@@ -48,7 +48,12 @@ const verifyToken = async (req, res, next) => {
     } catch (error) {
       return res.status(401).json({ error: "Invalid token" });
     }
-  };
+};
+
+const protectedRoute = (req, res) => {
+    res.status(200).json({ message: `Welcome, ${req.user.email}! You have access to this protected route.` });
+};
+  
 
 
-module.exports = { signUp, signIn, verifyToken };
+module.exports = { signUp, signIn, verifyToken, protectedRoute };
