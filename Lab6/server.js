@@ -1,10 +1,18 @@
 const express = require("express");
-const { signUp, signIn, verifyToken, protectedRoute } = require("./controllers/firebase_controller");
+const path = require('path');
+const cors = require('cors');
+const firebaseRoutes = require("./routes/firebase_routes");
 
-const router = express.Router();
+const app = express();
+const PORT = 3000;
 
-// routes for signup and signin
-router.post("/signup", signUp);       // Create a new user
-router.post("/signin", signIn);       // Sign in an existing user
+app.use(cors());
+// Middleware
+app.use(express.json());
+// Routes
+app.use("/firebase", firebaseRoutes);
 
-module.exports = router;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
