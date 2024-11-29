@@ -1,8 +1,9 @@
 // import firebase model from models folder
 const admin = require("../models/firebase_model"); 
+const axios = require('axios');
 
 // sign up controller
-const signUp = async (req, res) => {
+const createUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -20,17 +21,42 @@ const signUp = async (req, res) => {
 };
 
 // create sign in controller to login using registered email and password
-const signIn = async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      const user = await admin.auth().getUserByEmail(email);
-      // token generate 
-      const customToken = await admin.auth().createCustomToken(user.uid);
-      res.status(200).json({ message: "Signed in successfully", token: customToken });
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-};
+const loginUser = async(req,res)=>{
+  const { email, password } = req.body;
+
+  try {
+
+    const user = await admin.auth().getUserByEmail(email);
+
+    const customToken = await admin.auth().createCustomToken(user.uid);
+    const response = await axios.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDeLhNv9Imd3JAwcV-RKvTdqt-I_aLOmrY`,
+        {
+          token: customToken,
+          returnSecureToken: true,  // Tells Firebase to return a secure ID token
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      // Get ID token from the response
+      const { idToken, refreshToken, expiresIn } = response.data;
+
+      // Return the ID token and other relevant data
+      res.status(200).json({
+        message: "Signed in successfully",
+        idToken: idToken,
+        refreshToken: refreshToken,
+        expiresIn: expiresIn,
+      });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 
 // verify token generated from firebase and authenticate user
 const verifyToken = async (req, res, next) => {
@@ -54,6 +80,5 @@ const protectedRoute = (req, res) => {
     res.status(200).json({ message: `Welcome, ${req.user.email}! You have access to this protected route.` });
 };
   
-
 
 module.exports = { signUp, signIn, verifyToken, protectedRoute };
