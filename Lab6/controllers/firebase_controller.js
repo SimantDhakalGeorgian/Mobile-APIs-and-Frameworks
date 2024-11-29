@@ -72,12 +72,12 @@ const verifyToken = async (req, res, next) => {
       req.user = decodedToken;
       next(); 
     } catch (error) {
-      return res.status(401).json({ error: "Invalid token" });
+      return res.status(401).json({ error: "Invalid or expired token. Access denied." });
     }
 };
 
 const protectedRoute = (req, res) => {
-    res.status(200).json({ message: `Welcome, ${req.user.email}! You have access to this protected route.` });
+    res.status(200).json({ message: `Welcome, You have access to this protected route.` });
 };
   
 

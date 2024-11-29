@@ -10,7 +10,7 @@ router.post("/signup", createUser);
 router.post("/signin", loginUser);
 
 // protected routes
-router.get("/protectedRoutes", protectedRoute);
+router.get("/protected", verifyToken, protectedRoute);
 
 
 module.exports = router; // Export the router
