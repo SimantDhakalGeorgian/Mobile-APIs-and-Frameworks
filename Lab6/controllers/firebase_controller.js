@@ -19,5 +19,18 @@ const signUp = async (req, res) => {
   }
 };
 
+// create sign in controller to login using registered email and password
+const signIn = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const user = await admin.auth().getUserByEmail(email);
+      // token generate 
+      const customToken = await admin.auth().createCustomToken(user.uid);
+      res.status(200).json({ message: "Signed in successfully", token: customToken });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
 
 module.exports = { signUp, signIn, verifyToken };
