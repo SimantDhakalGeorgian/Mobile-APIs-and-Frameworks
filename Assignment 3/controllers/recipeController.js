@@ -10,6 +10,8 @@ const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/recipe');
 
+const mongoose = require('mongoose'); // add this line to solve updating recipe api
+
 /// import verifcation token from middleware
 const { verifyToken } = require('../middleware/authMiddleware');
 
@@ -151,6 +153,30 @@ router.put('/:id', verifyToken, async (req, res) => {
   }
 });
 
+// delete rcipe from database
+router.delete('/:id', verifyToken, async (req, res) => {
+  console.log('Deleting recipe');
+  try {
+    // validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid recipe ID' });
+    }
 
+    // find and delete 
+    const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id);
+    
+    // return error if not found any recipe
+    if (!deletedRecipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    // show successfully deleted message 
+    res.status(200).json({ message: 'Recipe deleted successfully', recipe: deletedRecipe });
+
+  } catch (e) {
+    console.error('Error deleting the recipe:', e);
+    res.status(500).json({ message: 'Server error: Could not delete recipe' });
+  }
+});
 
 module.exports = router;
