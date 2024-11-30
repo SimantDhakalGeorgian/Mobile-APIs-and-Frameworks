@@ -8,7 +8,7 @@ admin.initializeApp({
 
 admin.auth().listUsers(1)
   .then((userRecords) => {
-    console.log("Firebase Admin SDK Initialized:", userRecords);
+    console.log("Firebase Admin SDK Initialized");
   })
   .catch((error) => {
     console.error("Error initializing Firebase Admin SDK:", error.message);

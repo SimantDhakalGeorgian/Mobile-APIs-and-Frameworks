@@ -77,7 +77,7 @@ const verifyToken = async (req, res, next) => {
 };
 
 const protectedRoute = (req, res) => {
-    res.status(200).json({ message: `Welcome, You have access to this protected route.` });
+    res.status(200).json({ message: 'Welcome, You have access to this protected route.', data: req.user });
 };
   
 
