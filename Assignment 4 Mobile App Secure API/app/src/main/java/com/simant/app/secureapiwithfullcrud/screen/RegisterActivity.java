@@ -15,7 +15,7 @@ import com.simant.app.secureapiwithfullcrud.models.User;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText etFullName, etEmail, etPassword;
-    private Button btnRegister;
+    private Button btnRegister, btnMyCancel;
     private RegisterController registerController;
 
     @Override
@@ -32,6 +32,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        btnMyCancel = findViewById(R.id.btnCancel);
+        btnMyCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to LoginActivity
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -56,6 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onSuccess(String message) {
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
                         // Handle successful registration, e.g., navigate to the Login screen
+                        // Navigate to LoginActivity
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
                     }
 
                     @Override

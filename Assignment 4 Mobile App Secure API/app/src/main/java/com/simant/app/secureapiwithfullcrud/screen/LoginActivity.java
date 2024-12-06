@@ -2,8 +2,10 @@ package com.simant.app.secureapiwithfullcrud.screen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextEmail, editTextPassword;
     private Button buttonLogin;
     private LoginController loginController;
+    private TextView textViewRegister;
     private SharedPreferenceManager sharedPreferenceManager;
 
     @Override
@@ -26,6 +29,16 @@ public class LoginActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        textViewRegister = findViewById(R.id.txtRegister);
+        textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class); // Replace with your Home screen activity
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loginController = new LoginController(getApplicationContext());
         sharedPreferenceManager = new SharedPreferenceManager(this);
