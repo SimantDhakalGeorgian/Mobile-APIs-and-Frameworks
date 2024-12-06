@@ -22,16 +22,16 @@ public class SplashActivity extends AppCompatActivity {
 
         // Delay for SPLASH_DELAY and then check token
         new Handler().postDelayed(() -> {
-//            String token = sharedPreferenceManager.getToken();
+            String token = sharedPreferenceManager.getToken();
             Intent intent;
-//            if (token != null && !token.isEmpty()) {
-//                // Token exists, go to MainActivity
-//                intent = new Intent(SplashActivity.this, MainActivity.class);
-//            } else {
-//                // Token does not exist, go to LandingActivity
-//                intent = new Intent(SplashActivity.this, LandingActivity.class);
-//            }
-            intent = new Intent(SplashActivity.this, LandingActivity.class);
+            if (token != null && !token.isEmpty()) {
+                // Token exists, go to MainActivity
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+            } else {
+                // Token does not exist, go to LandingActivity
+                intent = new Intent(SplashActivity.this, LandingActivity.class);
+            }
+//            intent = new Intent(SplashActivity.this, LandingActivity.class);
             startActivity(intent);
             finish(); // Close SplashActivity
         }, SPLASH_DELAY);

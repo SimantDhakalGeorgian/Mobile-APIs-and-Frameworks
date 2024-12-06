@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/backgroundColor">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#00897B"
             app:layout_scrollFlags="scroll|enterAlways"
             app:titleTextColor="@color/white"/>
 
@@ -37,6 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Recipe Name"
+                android:textColorHint="@color/hintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -46,6 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="Momo Nepalese" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -57,6 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Cuisine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +71,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="Nepalese" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Difficulty"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +106,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Cooking Time (minutes)"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +117,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="45" />
+                    android:text="45"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,6 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +142,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:minLines="3"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="Steamed dumplings filled with a deliciously spiced chicken filling." />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -142,6 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Ingredients (comma separated)"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,6 +167,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:minLines="3"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="flour, chicken, onion, ginger, garlic, spices" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -164,6 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/hintColor"
                 android:hint="Photo URL"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -174,6 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textUri"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="http://example.com/photo.jpg" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -186,6 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Average Rating"
+                android:textColorHint="@color/hintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilPhotoLink">
@@ -195,6 +215,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
+                    android:textColor="@color/inputTextColor"
+                    android:textColorHint="@color/black"
                     android:text="4.5" />
 
             </com.google.android.material.textfield.TextInputLayout>
