@@ -8,13 +8,14 @@
     tools:context=".screen.MainActivity">
 
     <!-- Other Views such as RecyclerView -->
+
+    <!-- Floating Action Button -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
