@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Toolbar as App Bar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp" />
+        android:layout_height="wrap_content">
 
-    <!-- Scrollable Content -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/white"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,107 +33,97 @@
             <!-- Recipe Name Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilRecipeName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Recipe Name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRecipeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textColor="@android:color/black"
                     android:text="Momo Nepalese" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Cuisine Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCuisine"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Cuisine"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilRecipeName"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Cuisine"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilRecipeName">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCuisine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textColor="@android:color/black"
                     android:text="Nepalese" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Difficulty Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDifficulty"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Difficulty"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilCuisine"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Difficulty"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilCuisine">
 
                 <AutoCompleteTextView
                     android:id="@+id/etDifficulty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    android:textColor="@android:color/black"
                     android:text="Medium" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Cooking Time Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCookingTime"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Cooking Time (minutes)"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilDifficulty"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Cooking Time (minutes)"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilDifficulty">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCookingTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:textColor="@android:color/black"
                     android:text="45" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Description Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDescription"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Description"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilCookingTime"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Description"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilCookingTime">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescription"
@@ -136,23 +131,21 @@
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:minLines="3"
-                    android:textColor="@android:color/black"
                     android:text="Steamed dumplings filled with a deliciously spiced chicken filling." />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Ingredients Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilIngredients"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Ingredients (comma separated)"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilDescription"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Ingredients (comma separated)"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilDescription">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etIngredients"
@@ -160,68 +153,64 @@
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:minLines="3"
-                    android:textColor="@android:color/black"
                     android:text="flour, chicken, onion, ginger, garlic, spices" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Photo URL Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPhotoLink"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Photo URL"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilIngredients"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Photo URL"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilIngredients">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPhotoLink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textUri"
-                    android:textColor="@android:color/black"
                     android:text="http://example.com/photo.jpg" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Average Rating Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilAverageRating"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Average Rating"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilPhotoLink"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="Average Rating"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:hintTextColor="@color/dark_gray"
-                android:textColorHint="@color/dark_gray"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilPhotoLink">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etAverageRating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textColor="@android:color/black"
                     android:text="4.5" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Save Button -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveRecipe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:layout_marginTop="24dp"
+                android:text="Save Recipe"
                 android:textColor="@android:color/white"
-                android:background="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tilAverageRating"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilAverageRating" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

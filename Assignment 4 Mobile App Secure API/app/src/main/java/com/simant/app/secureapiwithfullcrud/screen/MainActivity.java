@@ -1,8 +1,12 @@
 package com.simant.app.secureapiwithfullcrud.screen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +93,35 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error fetching recipes", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_logout) {
+            performLogout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void performLogout() {
+        // Clear SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("YourPrefsName", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Navigate to LoginActivity
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
 
