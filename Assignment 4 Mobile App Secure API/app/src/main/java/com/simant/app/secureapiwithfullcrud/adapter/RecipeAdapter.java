@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.simant.app.secureapiwithfullcrud.R;
 import com.simant.app.secureapiwithfullcrud.api.ApiService;
 import com.simant.app.secureapiwithfullcrud.models.Recipe;
 import com.simant.app.secureapiwithfullcrud.screen.AddUpdateRecipeActivity;
+import com.simant.app.secureapiwithfullcrud.sharedpreference.SharedPreferenceManager;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -24,7 +26,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private final Context context;
     private final List<Recipe> recipeList;
 
-    // Add a new instance of your API service here (assuming Dio is being used)
     ApiService apiService; // Make sure ApiService is initialized in your adapter
 
     public RecipeAdapter(Context context, List<Recipe> recipeList, ApiService apiService) {
@@ -96,7 +97,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 context.startActivity(intent);
             } else if (which == 1) {
                 // Delete action
-                showDeleteConfirmationDialog(position, selectedRecipe.getId());
+                showDeleteConfirmationDialog(position, selectedRecipe.get_id());
             }
         });
         builder.show();
@@ -117,10 +118,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     // Delete Recipe Method with API request
     private void deleteRecipe(int position, String recipeId) {
-        String authToken = "Bearer your_jwt_token";  // Replace this with actual token retrieval mechanism
+        // Get the token from shared preferences
+        SharedPreferenceManager preferenceManager = new SharedPreferenceManager(context.getApplicationContext());
+        String token = preferenceManager.getToken();
 
         // Call the API to delete the recipe
-        apiService.deleteRecipe(authToken, recipeId)
+        apiService.deleteRecipe(token, recipeId)
                 .enqueue(new retrofit2.Callback<Void>() {
                     @Override
                     public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {

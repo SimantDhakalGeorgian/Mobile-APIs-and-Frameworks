@@ -3,21 +3,21 @@ package com.simant.app.secureapiwithfullcrud.models;
 import java.util.List;
 
 public class Recipe {
-    private String id; // Added for unique identifier
+    private String _id; // Changed from id to _id to match the JSON field
     private String recipeName;
-    private List<String> ingredients; // Changed to a list of ingredients
-    private int cookingTime; // Cooking time in minutes
-    private String difficulty; // Difficulty level of the recipe
+    private List<String> ingredients;
+    private int cookingTime;
+    private String difficulty;
     private String cuisine;
-    private String description; // Added description for recipe details
+    private String description;
     private String photoLink;
     private double averageRating;
 
     // Constructor
-    public Recipe(String id, String recipeName, List<String> ingredients, int cookingTime,
+    public Recipe(String _id, String recipeName, List<String> ingredients, int cookingTime,
                   String difficulty, String cuisine, String description, String photoLink,
                   double averageRating) {
-        this.id = id;
+        this._id = _id;
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.cookingTime = cookingTime;
@@ -29,12 +29,12 @@ public class Recipe {
     }
 
     // Getter and Setter methods
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getRecipeName() {

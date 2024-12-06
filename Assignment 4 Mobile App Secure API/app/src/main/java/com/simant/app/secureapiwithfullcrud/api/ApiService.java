@@ -26,6 +26,9 @@ public interface ApiService {
     @GET("recipe/")
     Call<List<Recipe>> getRecipes(@Header("Authorization") String token);
 
+    @POST("recipe/create")
+    Call<Recipe> createRecipe(@Header("Authorization") String token, @Body Recipe recipe);
+
     @DELETE("recipe/{id}")
     Call<Void> deleteRecipe(
             @Header("Authorization") String authorizationToken,
