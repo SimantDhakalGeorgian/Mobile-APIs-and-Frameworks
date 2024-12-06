@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 const router = express.Router();
 router.post('/auth/register', authController.register);
 router.post('/auth/login', authController.login);
-app.use('/auth', router);
+app.use('/', router);
 
 // recipe routes
 app.use('/recipe', recipeController);
