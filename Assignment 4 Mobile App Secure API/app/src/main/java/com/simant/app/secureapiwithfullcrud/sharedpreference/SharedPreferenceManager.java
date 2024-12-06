@@ -1,3 +1,9 @@
+/**
+ * File name: SharedPreferenceManager.java
+ * Student Name: Simant Dhakal
+ * StudentID: 200563270
+ * Date: December 6, 2024 */
+
 package com.simant.app.secureapiwithfullcrud.sharedpreference;
 
 import android.content.Context;
