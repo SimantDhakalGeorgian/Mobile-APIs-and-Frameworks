@@ -6,21 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Toolbar as App Bar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="Edit Recipe"
-            app:titleTextColor="#FFFFFF"
-            app:navigationIcon="@drawable/ic_arrow_back" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+    <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,6 +25,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+            <!-- Recipe Name Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilRecipeName"
                 android:layout_width="0dp"
@@ -52,6 +47,7 @@
                     android:text="Momo Nepalese" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Cuisine Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCuisine"
                 android:layout_width="0dp"
@@ -74,6 +70,7 @@
                     android:text="Nepalese" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Difficulty Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDifficulty"
                 android:layout_width="0dp"
@@ -96,6 +93,7 @@
                     android:text="Medium" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Cooking Time Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCookingTime"
                 android:layout_width="0dp"
@@ -118,6 +116,7 @@
                     android:text="45" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Description Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDescription"
                 android:layout_width="0dp"
@@ -141,6 +140,7 @@
                     android:text="Steamed dumplings filled with a deliciously spiced chicken filling." />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Ingredients Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilIngredients"
                 android:layout_width="0dp"
@@ -164,6 +164,7 @@
                     android:text="flour, chicken, onion, ginger, garlic, spices" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Photo URL Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPhotoLink"
                 android:layout_width="0dp"
@@ -209,30 +210,18 @@
                     android:text="4.5" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/btnSaveRecipe"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@id/tilPhotoLink">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSave"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCancel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Cancel"
-                    app:layout_constraintTop_toBottomOf="@id/btnSave"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="Save"
+                android:textColor="@android:color/white"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tilAverageRating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -3,13 +3,19 @@ package com.simant.app.secureapiwithfullcrud.screen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.simant.app.secureapiwithfullcrud.R;
 import com.simant.app.secureapiwithfullcrud.api.ApiClient;
 import com.simant.app.secureapiwithfullcrud.api.ApiService;
@@ -25,12 +31,29 @@ import retrofit2.Response;
 public class AddUpdateRecipeActivity extends AppCompatActivity {
     private EditText etRecipeName, etCuisine, etCookingTime, etDescription, etIngredients, etPhotoLink, etRating;
     private AutoCompleteTextView etDifficulty;  // Use AutoCompleteTextView for difficulty
-    private Button btnSave, btnCancel;
+    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_update_recipe);
+
+        // Set up the Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar); // Assuming you have the Toolbar in XML layout
+        setSupportActionBar(toolbar);
+
+        // Enable the back button in the app bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);  // Show back button
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+            actionBar.setTitle("Add Recipe");  // Default title for adding
+        } else {
+            actionBar.setDisplayHomeAsUpEnabled(true);  // Show back button
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+            actionBar.setTitle("Edit Recipe");  // Default title for adding
+        }
+
 
         // Initialize views
         etRecipeName = findViewById(R.id.etRecipeName);
@@ -41,8 +64,7 @@ public class AddUpdateRecipeActivity extends AppCompatActivity {
         etIngredients = findViewById(R.id.etIngredients);
         etPhotoLink = findViewById(R.id.etPhotoLink);
         etRating = findViewById(R.id.etAverageRating);
-        btnSave = findViewById(R.id.btnSave);
-        btnCancel = findViewById(R.id.btnCancel);
+        btnSave = findViewById(R.id.btnSaveRecipe);
 
         // Set up difficulty options in AutoCompleteTextView
         String[] difficultyOptions = {"Easy", "Medium", "Hard"};
@@ -51,6 +73,7 @@ public class AddUpdateRecipeActivity extends AppCompatActivity {
 
         // Get the recipe data from the Intent
         Intent intent = getIntent();
+        String _id = intent.getStringExtra("_id");
         String recipeName = intent.getStringExtra("recipe_name");
         String cuisine = intent.getStringExtra("cuisine");
         String difficulty = intent.getStringExtra("difficulty");
@@ -58,7 +81,13 @@ public class AddUpdateRecipeActivity extends AppCompatActivity {
         String description = intent.getStringExtra("description");
         String photoLink = intent.getStringExtra("photo_link");
         String ingredients = intent.getStringExtra("ingredients");
-        String rating = intent.getStringExtra("rating");
+        String rating = intent.getStringExtra("averageRating");
+
+        if (recipeName == null) {
+            btnSave.setText("Add Recipe");
+        } else {
+            btnSave.setText("Edit Recipe");
+        }
 
         // Set the values to the EditText fields
         etRecipeName.setText(recipeName);
@@ -74,14 +103,14 @@ public class AddUpdateRecipeActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (recipeName.isEmpty()) {
+                if (recipeName == null) {
                     saveRecipe();
                 } else {
                     // perform update operation
+                    updateRecipe(_id);
                 }
             }
         });
-        btnCancel.setOnClickListener(v -> finish());
     }
 
     private void saveRecipe() {
@@ -206,6 +235,16 @@ public class AddUpdateRecipeActivity extends AppCompatActivity {
                 Toast.makeText(AddUpdateRecipeActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle the back button click
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

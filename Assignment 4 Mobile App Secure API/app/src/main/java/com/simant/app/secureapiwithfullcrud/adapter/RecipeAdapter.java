@@ -85,6 +85,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             if (which == 0) {
                 // Edit action: pass recipe details to AddUpdateRecipeActivity
                 Intent intent = new Intent(context, AddUpdateRecipeActivity.class);
+                intent.putExtra("_id", selectedRecipe.get_id());
                 intent.putExtra("recipe_name", selectedRecipe.getRecipeName());
                 intent.putExtra("cuisine", selectedRecipe.getCuisine());
                 intent.putExtra("difficulty", selectedRecipe.getDifficulty());
