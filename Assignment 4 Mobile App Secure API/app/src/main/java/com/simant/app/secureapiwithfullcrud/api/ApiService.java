@@ -1,5 +1,7 @@
 package com.simant.app.secureapiwithfullcrud.api;
 
+import com.simant.app.secureapiwithfullcrud.models.LoginRequest;
+import com.simant.app.secureapiwithfullcrud.models.LoginResponse;
 import com.simant.app.secureapiwithfullcrud.models.User;
 
 import java.util.List;
@@ -20,5 +22,8 @@ import retrofit2.http.Path;
 public interface ApiService {
     @POST("auth/register")
     Call<Void> registerUser(@Body User user);
+
+    @POST("auth/login")
+    Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
 }

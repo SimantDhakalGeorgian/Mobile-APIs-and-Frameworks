@@ -1,4 +1,4 @@
-package com.simant.app.secureapiwithfullcrud;
+package com.simant.app.secureapiwithfullcrud.screen;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.simant.app.secureapiwithfullcrud.R;
 
 public class LoginActivity extends AppCompatActivity {
 
