@@ -1,5 +1,6 @@
 package com.simant.app.secureapiwithfullcrud.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         Picasso.get()
                 .load(recipe.getPhotoLink())  // Assuming `getPhotoLink()` returns the image URL
                 .into(holder.ivPhoto);
+
+
+        // Set click listener for each item
+        holder.itemView.setOnClickListener(v -> showEditDeleteDialog(position));
     }
 
     @Override
@@ -59,8 +64,39 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             super(itemView);
             tvRecipeName = itemView.findViewById(R.id.tvRecipeName);
             tvCuisine = itemView.findViewById(R.id.tvCuisine);
-            tvRating = itemView.findViewById(R.id.tvRating);
+            tvRating = itemView.findViewById(R.id.rbRating);
             ivPhoto = itemView.findViewById(R.id.ivPhoto);
         }
+    }
+
+    // Method to show the Edit/Delete dialog
+    private void showEditDeleteDialog(int position) {
+        final Recipe selectedRecipe = recipeList.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Choose an Action");
+        builder.setItems(new String[]{"Edit", "Delete"}, (dialog, which) -> {
+            if (which == 0) {
+                // Handle Edit action (e.g., pass to the activity to edit)
+//                listener.onEditRecipe(selectedRecipe);
+            } else if (which == 1) {
+                // Show confirmation dialog for delete
+                showDeleteConfirmationDialog(position);
+            }
+        });
+        builder.show();
+    }
+
+    // Method to show confirmation dialog for delete
+    private void showDeleteConfirmationDialog(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Do you really want to delete this recipe?");
+        builder.setPositiveButton("Yes, Delete", (dialog, which) -> {
+            // Handle deletion (remove item from the list, notify adapter)
+//            listener.onDeleteRecipe(position);
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 }
