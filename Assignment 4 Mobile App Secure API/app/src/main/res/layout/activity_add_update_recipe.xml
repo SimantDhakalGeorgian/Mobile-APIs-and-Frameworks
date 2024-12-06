@@ -186,6 +186,29 @@
                     android:text="http://example.com/photo.jpg" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Average Rating Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAverageRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Average Rating"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tilPhotoLink"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:hintTextColor="@color/dark_gray"
+                android:textColorHint="@color/dark_gray"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAverageRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    android:text="4.5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
     private RecipeAdapter adapter;
-
     FloatingActionButton floatingActionButton;
 
     @Override

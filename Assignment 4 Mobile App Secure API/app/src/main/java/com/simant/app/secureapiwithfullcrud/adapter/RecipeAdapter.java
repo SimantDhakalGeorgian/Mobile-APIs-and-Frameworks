@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.simant.app.secureapiwithfullcrud.R;
 import com.simant.app.secureapiwithfullcrud.api.ApiService;
 import com.simant.app.secureapiwithfullcrud.models.Recipe;
@@ -94,6 +92,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 intent.putExtra("description", selectedRecipe.getDescription());
                 intent.putExtra("photo_link", selectedRecipe.getPhotoLink());
                 intent.putExtra("ingredients", String.join(", ", selectedRecipe.getIngredients()));
+                intent.putExtra("rating", selectedRecipe.getAverageRating());
                 context.startActivity(intent);
             } else if (which == 1) {
                 // Delete action
