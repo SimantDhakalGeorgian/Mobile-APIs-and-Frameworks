@@ -11,8 +11,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 // controllers
-const authController = require('./controllers/authController');
-const recipeController = require('./controllers/recipeController');
+const authController = require('./controller/authController');
+const recipeController = require('./controller/recipeController');
 
 // middleware
 const { verifyToken } = require('./middleware/authMiddleware');
