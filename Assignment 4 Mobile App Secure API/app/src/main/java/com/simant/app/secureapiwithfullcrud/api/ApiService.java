@@ -1,5 +1,6 @@
 package com.simant.app.secureapiwithfullcrud.api;
 
+import com.simant.app.secureapiwithfullcrud.models.AddRecipe;
 import com.simant.app.secureapiwithfullcrud.models.LoginRequest;
 import com.simant.app.secureapiwithfullcrud.models.LoginResponse;
 import com.simant.app.secureapiwithfullcrud.models.Recipe;
@@ -27,7 +28,7 @@ public interface ApiService {
     Call<List<Recipe>> getRecipes(@Header("Authorization") String token);
 
     @POST("recipe/create")
-    Call<Recipe> createRecipe(@Header("Authorization") String token, @Body Recipe recipe);
+    Call<AddRecipe> createRecipe(@Header("Authorization") String token, @Body AddRecipe recipe);
 
     @DELETE("recipe/{id}")
     Call<Void> deleteRecipe(
