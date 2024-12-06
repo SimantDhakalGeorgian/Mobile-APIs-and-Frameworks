@@ -116,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void performLogout() {
         // Clear SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("YourPrefsName", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
+        editor.commit();
 
         Toast.makeText(MainActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
 
