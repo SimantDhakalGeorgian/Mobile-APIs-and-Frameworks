@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     //  private static final String BASE_URL = "http://localhost:3000/api/";
     //  private static final String BASE_URL = "http://10.0.2.2:3000/api/";
-    private static final String BASE_URL = "http://192.168.2.31:3000/api/";
-    public static final String IMAGE_URL = "http://192.168.2.31:3000";
+    private static final String BASE_URL = "http://192.168.2.31:3001/";
+    public static final String IMAGE_URL = "http://192.168.2.31:3001";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {
