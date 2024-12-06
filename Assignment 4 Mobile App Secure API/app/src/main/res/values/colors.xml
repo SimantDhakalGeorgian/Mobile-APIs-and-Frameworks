@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="hintColor">#6B6B6B</color>
+    <color name="inputTextColor">#464646</color>
+    <color name="dark_gray">#373535</color>
+
 </resources>

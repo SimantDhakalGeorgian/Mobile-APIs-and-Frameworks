@@ -2,27 +2,35 @@ package com.simant.app.secureapiwithfullcrud.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.simant.app.secureapiwithfullcrud.R;
+import com.simant.app.secureapiwithfullcrud.api.ApiService;
 import com.simant.app.secureapiwithfullcrud.models.Recipe;
+import com.simant.app.secureapiwithfullcrud.screen.AddUpdateRecipeActivity;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
+
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
     private final Context context;
     private final List<Recipe> recipeList;
 
-    public RecipeAdapter(Context context, List<Recipe> recipeList) {
+    // Add a new instance of your API service here (assuming Dio is being used)
+    ApiService apiService; // Make sure ApiService is initialized in your adapter
+
+    public RecipeAdapter(Context context, List<Recipe> recipeList, ApiService apiService) {
         this.context = context;
         this.recipeList = recipeList;
+        this.apiService = apiService;
     }
 
     @NonNull
@@ -45,7 +53,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         Picasso.get()
                 .load(recipe.getPhotoLink())  // Assuming `getPhotoLink()` returns the image URL
                 .into(holder.ivPhoto);
-
 
         // Set click listener for each item
         holder.itemView.setOnClickListener(v -> showEditDeleteDialog(position));
@@ -77,26 +84,59 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         builder.setTitle("Choose an Action");
         builder.setItems(new String[]{"Edit", "Delete"}, (dialog, which) -> {
             if (which == 0) {
-                // Handle Edit action (e.g., pass to the activity to edit)
-//                listener.onEditRecipe(selectedRecipe);
+                // Edit action: pass recipe details to AddUpdateRecipeActivity
+                Intent intent = new Intent(context, AddUpdateRecipeActivity.class);
+                intent.putExtra("recipe_name", selectedRecipe.getRecipeName());
+                intent.putExtra("cuisine", selectedRecipe.getCuisine());
+                intent.putExtra("difficulty", selectedRecipe.getDifficulty());
+                intent.putExtra("cooking_time", selectedRecipe.getCookingTime());
+                intent.putExtra("description", selectedRecipe.getDescription());
+                intent.putExtra("photo_link", selectedRecipe.getPhotoLink());
+                intent.putExtra("ingredients", String.join(", ", selectedRecipe.getIngredients()));
+                context.startActivity(intent);
             } else if (which == 1) {
-                // Show confirmation dialog for delete
-                showDeleteConfirmationDialog(position);
+                // Delete action
+                showDeleteConfirmationDialog(position, selectedRecipe.getId());
             }
         });
         builder.show();
     }
 
     // Method to show confirmation dialog for delete
-    private void showDeleteConfirmationDialog(int position) {
+    private void showDeleteConfirmationDialog(int position, String recipeId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Are you sure?");
         builder.setMessage("Do you really want to delete this recipe?");
         builder.setPositiveButton("Yes, Delete", (dialog, which) -> {
-            // Handle deletion (remove item from the list, notify adapter)
-//            listener.onDeleteRecipe(position);
+            // Perform deletion by calling the delete function
+            deleteRecipe(position, recipeId);
         });
         builder.setNegativeButton("Cancel", null);
         builder.show();
+    }
+
+    // Delete Recipe Method with API request
+    private void deleteRecipe(int position, String recipeId) {
+        String authToken = "Bearer your_jwt_token";  // Replace this with actual token retrieval mechanism
+
+        // Call the API to delete the recipe
+        apiService.deleteRecipe(authToken, recipeId)
+                .enqueue(new retrofit2.Callback<Void>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            // Successfully deleted the recipe from the API
+                            recipeList.remove(position);
+                            notifyItemRemoved(position);
+                        } else {
+                            // Handle error in deleting (e.g., show a Toast or AlertDialog)
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<Void> call, Throwable t) {
+                        // Handle failure (e.g., show a Toast or AlertDialog)
+                    }
+                });
     }
 }

@@ -1,12 +1,15 @@
 package com.simant.app.secureapiwithfullcrud.screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.simant.app.secureapiwithfullcrud.R;
 import com.simant.app.secureapiwithfullcrud.adapter.RecipeAdapter;
 import com.simant.app.secureapiwithfullcrud.api.ApiClient;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecipeAdapter adapter;
 
+    FloatingActionButton floatingActionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddUpdateRecipeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         fetchRecipes();
     }
@@ -60,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     List<Recipe> recipes = response.body();
 
                     // Initialize the adapter with the recipes list
-                    adapter = new RecipeAdapter(MainActivity.this, recipes);
+                    adapter = new RecipeAdapter(MainActivity.this, recipes, apiService);
 
                     // Set the adapter for the RecyclerView
                     recyclerView.setAdapter(adapter);
