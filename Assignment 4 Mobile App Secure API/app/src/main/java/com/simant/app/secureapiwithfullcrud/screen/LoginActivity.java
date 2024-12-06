@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
 
-        loginController = new LoginController();
+        loginController = new LoginController(getApplicationContext());
         sharedPreferenceManager = new SharedPreferenceManager(this);
 
         buttonLogin.setOnClickListener(v -> {

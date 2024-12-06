@@ -1,5 +1,7 @@
 package com.simant.app.secureapiwithfullcrud.controller;
 
+import android.content.Context;
+
 import com.simant.app.secureapiwithfullcrud.api.ApiClient;
 import com.simant.app.secureapiwithfullcrud.api.ApiService;
 import com.simant.app.secureapiwithfullcrud.models.User;
@@ -11,8 +13,8 @@ import retrofit2.Response;
 public class RegisterController {
     private final ApiService apiService;
 
-    public RegisterController() {
-        apiService = ApiClient.getClient().create(ApiService.class);
+    public RegisterController(Context context) {
+        apiService = ApiClient.getClient(context).create(ApiService.class);
     }
 
     public void registerUser(User user, RegisterCallback callback) {

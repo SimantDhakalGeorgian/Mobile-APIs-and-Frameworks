@@ -1,57 +1,26 @@
 package com.simant.app.secureapiwithfullcrud.models;
 
-import java.util.List;
-
 public class Recipe {
-    private String _id;
     private String recipeName;
-    private List<String> ingredients;
-    private int cookingTime;
-    private String difficulty;
     private String cuisine;
-    private String description;
-    private String photoLink;
     private double averageRating;
+    private String photoLink;
 
-    // Getters and Setters
-    public String get_id() {
-        return _id;
+    // Constructor
+    public Recipe(String recipeName, String cuisine, double averageRating, String photoLink) {
+        this.recipeName = recipeName;
+        this.cuisine = cuisine;
+        this.averageRating = averageRating;
+        this.photoLink = photoLink;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
+    // Getter and Setter methods
     public String getRecipeName() {
         return recipeName;
     }
 
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
-    }
-
-    public List<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public int getCookingTime() {
-        return cookingTime;
-    }
-
-    public void setCookingTime(int cookingTime) {
-        this.cookingTime = cookingTime;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 
     public String getCuisine() {
@@ -62,12 +31,12 @@ public class Recipe {
         this.cuisine = cuisine;
     }
 
-    public String getDescription() {
-        return description;
+    public double getAverageRating() {
+        return averageRating;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 
     public String getPhotoLink() {
@@ -77,13 +46,4 @@ public class Recipe {
     public void setPhotoLink(String photoLink) {
         this.photoLink = photoLink;
     }
-
-    public double getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
-    }
 }
-

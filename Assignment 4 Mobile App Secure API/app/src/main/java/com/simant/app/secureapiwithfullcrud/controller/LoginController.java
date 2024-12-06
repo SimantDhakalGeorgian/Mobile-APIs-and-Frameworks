@@ -1,5 +1,7 @@
 package com.simant.app.secureapiwithfullcrud.controller;
 
+import android.content.Context;
+
 import com.simant.app.secureapiwithfullcrud.api.ApiClient;
 import com.simant.app.secureapiwithfullcrud.api.ApiService;
 import com.simant.app.secureapiwithfullcrud.models.LoginRequest;
@@ -11,8 +13,8 @@ import retrofit2.Response;
 public class LoginController {
     private final ApiService apiService;
 
-    public LoginController() {
-        apiService = ApiClient.getClient().create(ApiService.class);
+    public LoginController(Context context) {
+        apiService = ApiClient.getClient(context).create(ApiService.class);
     }
 
     public void loginUser(LoginRequest request, LoginCallback callback) {
