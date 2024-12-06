@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://192.168.2.31:3001/"; // Your base URL
-    public static final String IMAGE_URL = "http://192.168.2.31:3001"; // Image URL
+    private static final String BASE_URL = "https://assignment-4-mobile-app.onrender.com/"; // Your base URL
+    public static final String IMAGE_URL = "https://assignment-4-mobile-app.onrender.com"; // Image URL
     private static Retrofit retrofit;
 
     public static Retrofit getClient(Context context) {

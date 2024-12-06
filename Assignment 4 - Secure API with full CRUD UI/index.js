@@ -28,15 +28,18 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
-// register routes
+// Welcome route for the base URL
+app.get('/', (req, res) => {
+  res.send('<h1>Welcome to Assignment 4 Secure API Assignment</h1><p>Please check the Android app. Thank you for visiting.</p>');
+});
+
+// auth routes
 const router = express.Router();
 router.post('/auth/register', authController.register);
-app.post('/auth/login', authController.login);
+router.post('/auth/login', authController.login);
+app.use('/auth', router);
 
-// Debugging the routing
-app.use('/', router); 
-
-// all recipe routes
+// recipe routes
 app.use('/recipe', recipeController);
 
 // create server using http
