@@ -1,5 +1,7 @@
 package com.simant.app.secureapiwithfullcrud.api;
 
+import com.simant.app.secureapiwithfullcrud.models.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +18,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
-
+    @POST("auth/register")
+    Call<Void> registerUser(@Body User user);
 
 }

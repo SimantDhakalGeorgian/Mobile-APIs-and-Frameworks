@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4F8"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/welcome_icon"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to SmartConnect"
+        android:textAlignment="center"
+        android:textColor="#2C3E50"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discover, Connect, Grow"
+        android:textAlignment="center"
+        android:textColor="#7F8C8D"
+        android:textSize="18sp"
+        android:layout_marginBottom="48dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="Login"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#3498DB"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="Register"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        android:backgroundTint="#2ECC71"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+</LinearLayout>
