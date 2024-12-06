@@ -93,7 +93,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 intent.putExtra("description", selectedRecipe.getDescription());
                 intent.putExtra("photo_link", selectedRecipe.getPhotoLink());
                 intent.putExtra("ingredients", String.join(", ", selectedRecipe.getIngredients()));
-                intent.putExtra("rating", selectedRecipe.getAverageRating());
+                intent.putExtra("averageRating", String.valueOf(selectedRecipe.getAverageRating()));
                 context.startActivity(intent);
             } else if (which == 1) {
                 // Delete action
