@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Set up the toolbar
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         recyclerView = findViewById(R.id.recipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -116,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
+
+        Toast.makeText(MainActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
 
         // Navigate to LoginActivity
         Intent intent = new Intent(this, LoginActivity.class);
