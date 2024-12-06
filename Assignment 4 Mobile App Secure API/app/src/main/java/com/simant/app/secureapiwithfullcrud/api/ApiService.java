@@ -14,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -29,6 +30,13 @@ public interface ApiService {
 
     @POST("recipe/create")
     Call<AddRecipe> createRecipe(@Header("Authorization") String token, @Body AddRecipe recipe);
+
+    @PUT("recipe/{id}")  // Define the PUT request for updating a recipe
+    Call<AddRecipe> updateRecipe(
+            @Header("Authorization") String authorizationToken,
+            @Path("id") String recipeId,  // Path parameter for recipe ID
+            @Body AddRecipe updatedRecipe  // Request body with updated recipe data
+    );
 
     @DELETE("recipe/{id}")
     Call<Void> deleteRecipe(
